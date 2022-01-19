@@ -12,6 +12,10 @@ Módulo 3: React
 ## El juego del ahorcado - Segundo sprint
 
 - [x] Crear repositorio nuevo: `Adalab-promo-o-module-3-pair-10-sprint-2-hangman-game`
+- [x] Conoce a tu nueva pareja y su trabajo
+- [x] Componentizar la cabecera
+- [] Pendiente componentizar el muñeco
+- []
 - []
 
 ---
