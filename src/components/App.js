@@ -1,8 +1,10 @@
 import '../styles/App.scss';
 import { useEffect, useState } from 'react';
+import {Route, Switch} from "react-router-dom"
 import callToApi from '../services/api';
 import Header from './Header';
 import Dummy from './Dummy';
+import Footer from './Footer';
 
 function App() {
   const [lastLetter, setLastLetter] = useState('');
@@ -64,6 +66,8 @@ function App() {
   return (
     <div className="page">
       <Header />
+      <Switch>
+      <Route exact path= "/">
       <main className="main">
         <section>
           <div className="solution">
@@ -92,6 +96,14 @@ function App() {
         </section>
         <Dummy numberOfErrors={numberOfErrors} />
       </main>
+    
+      </Route>
+      <Route path= "/Instructions">
+        <p>lorem</p>
+      </Route>
+      </Switch>
+
+      <Footer />
     </div>
   );
 }
