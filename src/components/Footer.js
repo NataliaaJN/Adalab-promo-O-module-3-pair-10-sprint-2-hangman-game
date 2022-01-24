@@ -6,25 +6,19 @@ const Footer = () => {
       <nav>
         <ul>
           <li className="footer__menu-item">
-            <NavLink className={(isActive) =>
-                "footer__menu-link" + (!isActive ? "active" : "")
-              } to="/">
+            <NavLink className="footer__menu-link" exact to="/">
               A jugar
             </NavLink>
           </li>
 
           <li className="footer__menu-item">
-            <NavLink className={(isActive) =>
-                "footer__menu-link" + (!isActive ? "active" : "")
-              } to="/instructions">
+            <NavLink className="footer__menu-link" to="/instructions">
              ¿Cómo se juega?
             </NavLink>
           </li>
 
           <li className="footer__menu-item">
-            <NavLink className={(isActive) =>
-                "footer__menu-link" + (!isActive ? "active" : "")
-              } to="/options">
+            <NavLink className="footer__menu-link"  to="/options">
                Más opciones
             </NavLink>
           </li>

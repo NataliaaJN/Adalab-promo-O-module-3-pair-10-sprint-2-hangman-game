@@ -65,52 +65,58 @@ function App() {
     (letter) => !word.includes(letter)
   ).length;
 
+  const handleFormSubmit = (ev) => {
+    ev.preventDefault();
+  };
+
+  const handleNewWordInput = (value) => {
+    setWord(value)
+    setUserLetters([])
+    setLastLetter("")
+  };
+
   return (
     <div className="page">
       <Header />
 
-      <main>
-
+      <main className="main">
         <Switch>
           <Route exact path="/">
-            <main className="main">
-              <section>
-                <div className="solution">
-                  <h2 className="title">Solución:</h2>
-                  <ul className="letters">{renderSolutionLetters()}</ul>
-                </div>
-                <div className="error">
-                  <h2 className="title">Letras falladas:</h2>
-                  <ul className="letters">{renderErrorLetters()}</ul>
-                </div>
-                <form className="form">
-                  <label className="title" htmlFor="last-letter">
-                    Escribe una letra:
-                  </label>
-                  <input
-                    autoComplete="off"
-                    className="form__input"
-                    maxLength="1"
-                    type="text"
-                    name="last-letter"
-                    id="last-letter"
-                    value={lastLetter ? lastLetter : ""}
-                    onChange={handleInput}
-                  />
-                </form>
-              </section>
-              <Dummy numberOfErrors={numberOfErrors} />
-            </main>
+            <section>
+              <div className="solution">
+                <h2 className="title">Solución:</h2>
+                <ul className="letters">{renderSolutionLetters()}</ul>
+              </div>
+              <div className="error">
+                <h2 className="title">Letras falladas:</h2>
+                <ul className="letters">{renderErrorLetters()}</ul>
+              </div>
+              <form className="form">
+                <label className="title" htmlFor="last-letter">
+                  Escribe una letra:
+                </label>
+                <input
+                  autoComplete="off"
+                  className="form__input"
+                  maxLength="1"
+                  type="text"
+                  name="last-letter"
+                  id="last-letter"
+                  value={lastLetter ? lastLetter : ""}
+                  onChange={handleInput}
+                />
+              </form>
+            </section>
           </Route>
           <Route path="/instructions">
             <Intructions />
           </Route>
 
           <Route path="/options">
-            <Options />
+            <Options handleFormSubmit={handleFormSubmit} handleNewWordInput={handleNewWordInput} />
           </Route>
         </Switch>
-        
+        <Dummy numberOfErrors={numberOfErrors} />
       </main>
 
       <Footer />
