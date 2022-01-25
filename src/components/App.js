@@ -7,6 +7,7 @@ import Dummy from "./Dummy";
 import Footer from "./Footer";
 import Intructions from "./Instructions";
 import Options from "./Options";
+import Form from "./Form";
 
 function App() {
   const [lastLetter, setLastLetter] = useState("");
@@ -19,20 +20,17 @@ function App() {
     });
   }, []);
 
-  const handleInput = (event) => {
-    let inputValue = event.target.value;
-    setLastLetter(inputValue);
+  const handleInput = (value) => {
+    let inputValue = value;
+    if (value.toLocaleLowerCase().match("^[a-zA-ZáäéëíïóöúüÁÄÉËÍÏÓÖÚÜñÑ]?")) {
+      setLastLetter(inputValue);
+    }
     if (inputValue) {
-      inputValue = event.target.value
-        .toLocaleLowerCase()
-        .match("[A-zÁ-úÄ-üñÑ]");
-      if (inputValue) {
-        const foundLetter = userLetters.find(
-          (letter) => letter === inputValue[0]
-        );
-        if (!foundLetter) {
-          setUserLetters([...userLetters, inputValue[0]]);
-        }
+      const foundLetter = userLetters.find(
+        (letter) => letter === inputValue[0]
+      );
+      if (!foundLetter) {
+        setUserLetters([...userLetters, inputValue[0]]);
       }
     }
   };
@@ -91,21 +89,7 @@ function App() {
                 <h2 className="title">Letras falladas:</h2>
                 <ul className="letters">{renderErrorLetters()}</ul>
               </div>
-              <form className="form">
-                <label className="title" htmlFor="last-letter">
-                  Escribe una letra:
-                </label>
-                <input
-                  autoComplete="off"
-                  className="form__input"
-                  maxLength="1"
-                  type="text"
-                  name="last-letter"
-                  id="last-letter"
-                  value={lastLetter ? lastLetter : ""}
-                  onChange={handleInput}
-                />
-              </form>
+              <Form lastLetter={lastLetter} handleInput={handleInput} />
             </section>
           </Route>
           <Route path="/instructions">
